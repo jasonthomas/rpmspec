@@ -73,6 +73,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/virtualenv*
 
 %changelog
+* Fri Aug 1 2014 Jason Thomas <jthomas@mozilla.com> - 1.11.6-1
+- Update to latest upstream.
 * Tue Aug 20 2013 Robert Kuska <rkuska@redhat.com> - 1.10.1-2
 - Bundle unbudled libraries again
 Resolves: rhbz#995284
