@@ -1,12 +1,14 @@
+%{?scl:%scl_package m2crypto}
+%{!?scl:%global pkg_name %{name}}
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 
 # Keep this value in sync with the definition in openssl.spec.
 %global multilib_arches %{ix86} ia64 ppc ppc64 s390 s390x x86_64 sparc sparcv9 sparc64
 
 Summary: Support for using OpenSSL in python scripts
-Name: m2crypto
+Name: %{?scl_prefix}m2crypto
 Version: 0.22.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 Source0: http://pypi.python.org/packages/source/M/M2Crypto/M2Crypto-%{version}.tar.gz
 License: MIT
 Group: System Environment/Libraries
@@ -48,8 +50,10 @@ if pkg-config openssl ; then
 	LDFLAGS="$LDFLAGS`pkg-config --libs-only-L openssl`" ; export LDFLAGS
 fi
 
+%{?scl:scl enable %{scl} "}
 # -cpperraswarn is necessary for including opensslconf-${basearch} directly
-SWIG_FEATURES=-cpperraswarn python setup.py build
+SWIG_FEATURES=-cpperraswarn %{__python} setup.py build
+%{?scl:"}
 
 %install
 CFLAGS="$RPM_OPT_FLAGS" ; export CFLAGS
@@ -58,17 +62,23 @@ if pkg-config openssl ; then
 	LDFLAGS="$LDFLAGS`pkg-config --libs-only-L openssl`" ; export LDFLAGS
 fi
 
+%{?scl:scl enable %{scl} "}
 python setup.py install --root=$RPM_BUILD_ROOT
+%{?scl:"}
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%{python_sitearch}/M2Crypto
-%{python_sitearch}/M2Crypto-*.egg-info
+%{_libdir}/python?.?/site-packages/M2Crypto
+%{_libdir}/python?.?/site-packages/M2Crypto-*.egg-info
 
 %changelog
+* Fri Feb 13 2015 Jason Thomas <jthomas@mozilla.com> - 0.22.3-2
+- Add scl support.
+
 * Thu Jan 8 2015 Jason Thomas <jthomas@mozilla.com - 0.22.3-1
 - Update to latest upstream.
 
