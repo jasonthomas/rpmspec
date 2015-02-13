@@ -1,4 +1,4 @@
-%{?scl:%scl_package python-werkzeug}
+%{?scl:%scl_package python-Pillow}
 %{!?scl:%global pkg_name %{name}}
 
 Name:           %{?scl_prefix}python-Pillow
