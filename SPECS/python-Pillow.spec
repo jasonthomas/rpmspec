@@ -2,14 +2,13 @@
 %{!?scl:%global pkg_name %{name}}
 
 Name:           %{?scl_prefix}python-Pillow
-Version:        2.3.0
-Release:        2%{?dist}
+Version:        2.7.0
+Release:        1%{?dist}
 Summary:        Python Imaging Library (Fork)
-
 Group:          Development/Languages
 License:        Standard PIL License
 URL:            http://pypi.python.org/pypi/Pillow
-Source0:        http://pypi.python.org/packages/source/v/Pillow/Pillow-%{version}.zip
+Source0:        http://pypi.python.org/packages/source/v/Pillow/Pillow-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{pkg_name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  libjpeg-turbo-devel, lcms2-devel, freetype-devel, libtiff-devel, libzip-devel, tcl-devel, tk-devel
 
@@ -41,6 +40,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/*
 
 %changelog
+* Thu Mar 5 2015 Jason Thomas <jthomas@mozilla.com> - 2.7.0-1
+- Build latest upstream.
 * Fri Feb 13 2015 Jason Thomas <jthomas@mozilla.com> - 2.3.0-2
 - Add build requirements.
 * Wed Feb 11 2015 Jason Thomas <jthomas@mozilla.com> - 2.3.0-1
