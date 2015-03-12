@@ -4,7 +4,7 @@
 
 Summary: Python wrapper module around the OpenSSL library
 Name: %{?scl_prefix}pyOpenSSL
-Version: 0.13.1
+Version: 0.14
 Release: 1%{?dist}
 Source0: http://pypi.python.org/packages/source/p/pyOpenSSL/pyOpenSSL-%{version}.tar.gz
 License: LGPLv2+
@@ -28,10 +28,8 @@ High-level wrapper around a subset of the OpenSSL library, includes
 %build
 %{?scl:scl enable %{scl} "}
 %{__python} setup.py build
+%{__make} -C doc html text
 %{?scl:"}
-%{__make} -C doc ps
-%{__make} -C doc text html
-find doc/ -name pyOpenSSL.\*
 
 %install
 %{__rm} -rf %{buildroot}
@@ -44,11 +42,13 @@ find doc/ -name pyOpenSSL.\*
 
 %files
 %defattr(-,root,root,-)
-%doc README doc/pyOpenSSL.* doc/html
-%{_libdir}/python?.?/site-packages/OpenSSL
-%{_libdir}/python?.?/site-packages/pyOpenSSL*.egg-info
+%doc README doc/_build/text doc/_build/html doc/_build/doctrees
+%{python2_sitelib}
 
 %changelog
+* Thu Mar 11 2015 Jason Thomas <jthomas@mozilla.com> - 0.14-1
+- Build latest upstream.
+
 * Fri Feb 13 2015 Jason Thomas <jthomas@mozilla.com> - 0.13.1-1
 - Add scl support. Bump version.
 
