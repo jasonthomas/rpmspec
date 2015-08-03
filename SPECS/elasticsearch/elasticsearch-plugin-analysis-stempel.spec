@@ -5,7 +5,7 @@
 %define __os_install_post %{nil}
 
 Name:           elasticsearch-plugin-analysis-stempel
-Version:        2.4.3
+Version:        2.6.0
 Release:        1%{?dist}
 Summary:        ElasticSearch plugin for Lucene Stempel (Polish) Analysis
 Group:          System Environment/Daemons
@@ -15,7 +15,7 @@ Source0:        https://download.elasticsearch.org/elasticsearch/elasticsearch-a
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 
-Requires:       elasticsearch >= 1.4.5
+Requires:       elasticsearch >= 1.6.0
 
 %description
 The Stempel (Polish) Analysis plugin integrates Lucene stempel (polish) analysis module into elasticsearch.
@@ -43,6 +43,9 @@ cd %{name}-%{version}
 %{base_install_dir}/plugins/analysis-stempel/*
 
 %changelog
+* Mon Aug 3 2015 Jason Thomas <jthomas@mozila.com> 2.6.0-1
+- New upstream version
+
 * Thu Jul 22 2015 Jason Thomas <jthomas@mozila.com> 2.4.3-1
 - New upstream version
 

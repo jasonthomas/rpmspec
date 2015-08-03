@@ -5,7 +5,7 @@
 %define __os_install_post %{nil}
 
 Name:           elasticsearch-plugin-analysis-icu
-Version:        2.4.3
+Version:        2.6.0
 Release:        1%{?dist}
 Summary:        ElasticSearch plugin for Lucene ICU
 Group:          System Environment/Daemons
@@ -15,7 +15,7 @@ Source0:        https://download.elasticsearch.org/elasticsearch/elasticsearch-a
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 
-Requires:       elasticsearch >= 1.4.5
+Requires:       elasticsearch >= 1.6.0
 
 %description
 The ICU Analysis plugin for ElasticSearch integrates Lucene ICU module
@@ -46,10 +46,13 @@ cd %{name}-%{version}
 
 %changelog
 
-* Thu Jul 22 2015 Jason Thomas <jthomas@mozila.com> 2.4.3-1
+* Mon Aug 3 2015 Jason Thomas jthomas@mozila.com 2.6.0-1
 - New upstream version
 
-* Tue Jan 7 2015 Jason Thomas <jthomas@mozila.com> 2.3.0-1
+* Thu Jul 22 2015 Jason Thomas jthomas@mozila.com 2.4.3-1
+- New upstream version
+
+* Tue Jan 7 2015 Jason Thomas jthomas@mozila.com 2.3.0-1
 - New upstream version
 
 * Tue Nov 27 2012 Tavis Aitken tavisto@tavisto.net 1.7.0-1
